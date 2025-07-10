@@ -1,48 +1,73 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
+import { useLocalSearchParams, useRouter } from 'expo-router';
+import React, { useCallback, useEffect, useState } from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { projetos as todosProjetos } from '../data/projetos';
 
-const projetos = [
-  { id: '1', nome: 'Projeto 1', cor: '#FFF8DC' }, // cor clara
-  { id: '2', nome: 'Projeto 2', cor: '#FFA500' }, // laranja
-  { id: '3', nome: 'Projeto 3', cor: '#32CD32' }, // verde
-  { id: '4', nome: 'Projeto 4', cor: '#F5DEB3' }, // bege claro
-  { id: '5', nome: 'Projeto 5', cor: '#FFA500' }, // laranja
-  { id: '6', nome: 'Projeto 6', cor: '#FFE4B5' }, // cor clara
-  { id: '7', nome: 'Projeto 7', cor: '#FFF8DC' }, // cor clara
-  { id: '8', nome: 'Projeto 8', cor: '#FFA500' }, // laranja
-];
+const ProjetosScreen = () => {
+  const { categoria } = useLocalSearchParams();
+  const router = useRouter();
 
-const HomeScreen = () => {
+  const [categoriaInterna, setCategoriaInterna] = useState<string | null>(null);
+
+  // Atualiza filtro de categoria quando muda o parâmetro
+  useEffect(() => {
+    if (typeof categoria === 'string' && categoria.trim() !== '') {
+      setCategoriaInterna(categoria);
+    } else {
+      setCategoriaInterna(null);
+    }
+  }, [categoria]);
+
+  // Limpa filtro quando volta para a tela sem parâmetro
+  useFocusEffect(
+    useCallback(() => {
+      if (typeof categoria !== 'string' || categoria.trim() === '') {
+        setCategoriaInterna(null);
+      }
+    }, [categoria])
+  );
+
+  const projetosFiltrados = todosProjetos.filter(
+    (proj) => !categoriaInterna || proj.categoria === categoriaInterna
+  );
+
   return (
     <View style={styles.container}>
-      {/* Topo com ícones e título */}
+      {/* Topo com título */}
       <View style={styles.header}>
-        <Text style={styles.title}>Atelie Solidario</Text>
+        <Text style={styles.title}>Ateliê Solidário</Text>
       </View>
 
-      {/* Seção de Projetos */}
+      {/* Título da seção */}
       <View style={styles.section}>
         <View style={styles.sectionTitleContainer}>
-          <Text style={styles.sectionTitle}>Projeto</Text>
+          <Text style={styles.sectionTitle}>
+            {categoriaInterna ? `Projetos de ${categoriaInterna}` : 'Todos os Projetos'}
+          </Text>
         </View>
 
+        {/* Lista de projetos */}
         <View style={styles.projectGrid}>
-          {projetos.map((proj) => (
-            <TouchableOpacity key={proj.id} style={[styles.projectCard, { backgroundColor: proj.cor }]}>
+          {projetosFiltrados.map((proj) => (
+            <TouchableOpacity
+              key={proj.id}
+              style={[styles.projectCard, { backgroundColor: proj.cor }]}
+              onPress={() => router.push(`/projeto_selecionado?id=${proj.id}`)}
+            >
               <Text style={styles.projectText}>{proj.nome}</Text>
             </TouchableOpacity>
           ))}
         </View>
       </View>
 
-      {/* WhatsApp fixo */}
-      <View style={styles.whatsappContainer}>
-      </View>
+      {/* Espaço inferior opcional (WhatsApp, etc.) */}
+      <View style={styles.whatsappContainer}></View>
     </View>
   );
 };
 
-export default HomeScreen;
+export default ProjetosScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -56,11 +81,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-  },
-  icon: {
-    width: 24,
-    height: 24,
-    resizeMode: 'contain',
   },
   title: {
     fontSize: 45,
@@ -77,14 +97,13 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     alignSelf: 'flex-start',
     marginBottom: 20,
-    width:350,
+    width: 350,
     alignItems: 'center',
   },
   sectionTitle: {
     color: '#FFF',
     fontSize: 30,
     fontWeight: 'bold',
-    alignItems: 'center',
   },
   projectGrid: {
     flexDirection: 'row',
@@ -105,10 +124,5 @@ const styles = StyleSheet.create({
   whatsappContainer: {
     alignItems: 'center',
     paddingBottom: 20,
-  },
-  whatsappIcon: {
-    width: 40,
-    height: 40,
-    resizeMode: 'contain',
   },
 });

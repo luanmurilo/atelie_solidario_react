@@ -1,14 +1,8 @@
-import { useRouter } from 'expo-router';
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 
 const HomeScreen = () => {
   const botoes = ['Crochê', 'Origami', 'Pano de Prato', 'Pintura'];
-  const router = useRouter();
-
-  const handlePress = (categoria: string) => {
-    router.push(`/projetos?categoria=${encodeURIComponent(categoria)}`);
-  };
 
   return (
     <View style={styles.container}>
@@ -20,14 +14,15 @@ const HomeScreen = () => {
       {/* Botões */}
       <View style={styles.buttonsContainer}>
         {botoes.map((item, index) => (
-          <TouchableOpacity key={index} style={styles.button} onPress={() => handlePress(item)}>
+          <TouchableOpacity key={index} style={styles.button}>
             <Text style={styles.buttonText}>{item}</Text>
           </TouchableOpacity>
         ))}
       </View>
 
       {/* WhatsApp fixo */}
-      <View style={styles.whatsappContainer}></View>
+      <View style={styles.whatsappContainer}>
+      </View>
     </View>
   );
 };
@@ -48,6 +43,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: -50,
     paddingTop: 150,
+  },
+  icon: {
+    width: 24,
+    height: 24,
+    resizeMode: 'contain',
   },
   title: {
     fontSize: 45,
@@ -72,5 +72,10 @@ const styles = StyleSheet.create({
   whatsappContainer: {
     alignItems: 'center',
     paddingBottom: 20,
+  },
+  whatsappIcon: {
+    width: 40,
+    height: 40,
+    resizeMode: 'contain',
   },
 });
