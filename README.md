@@ -1,5 +1,8 @@
 # Welcome to your Expo app 👋
 
+Grupo: Luan Murilo de Mello, Nathalia Greiffo, Ian Marcos, Enzo C. Tomasoni, Leonardo Souza de Carvalho, Carlos Everaldo T. Santos e Mateus José da Silva
+OBS: Na formação do grupo esta habilitado apenas para subir 6 nomes, porém a Nathalia foi adicionada posteriormente por não ter grupo. Foi altorizado  via e-mail a adição dela.
+
 link repositório git: https://github.com/luanmurilo/atelie_solidario_react.git
 
 Optamos por desenvolver o aplicativo em React Native com o uso do Expo, principalmente pela facilidade e agilidade que essa ferramenta proporciona, além do conhecimento prévio da maioria dos integrantes da equipe. Para a construção do app, utilizamos como referência o projeto de extensão Ateliê Solidário, orientado pela professora Luciane Ropelatto, infelizmente não conseguimos contato com ele até o memento
