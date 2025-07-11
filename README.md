@@ -1,7 +1,29 @@
 # Welcome to your Expo app 👋
+
+Optamos por desenvolver o aplicativo em React Native com o uso do Expo, principalmente pela facilidade e agilidade que essa ferramenta proporciona, além do conhecimento prévio da maioria dos integrantes da equipe. Para a construção do app, utilizamos como referência o projeto de extensão Ateliê Solidário, orientado pela professora Luciane Ropelatto, infelizmente não conseguimos contato com ele até o memento
+
+Escopo do Projeto (o que será entregue)
+- Tela inicial com navegação simples;
+
+- Tela de catálogo com lista de itens do ateliê (ex: pano de prato decorado, necessaire, etc.);
+
+- Ao clicar em um item, o usuário acessa um passo a passo com imagens e textos curtos;
+
+- Interface responsiva e acessível;
+
+- Não haverá integração com banco de dados nem sistema de login (projeto focado em interface apenas).
+
+Resultados Esperados
+- Protótipo funcional de um app mobile com design amigável;
+
+- Contribuição prática para um projeto social da universidade;
+
+- Aplicação dos conhecimentos de desenvolvimento mobile com foco em interfaces declarativas;
+
+- Base inicial para continuidade do projeto por outros grupos em semestres futuros.
+
 DEPENDENCIAS
 1. Node.js instalado
-
 
 TUTORIAL PARA RODAR O PROJETO
 
