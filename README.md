@@ -1,5 +1,7 @@
 # Welcome to your Expo app 👋
 
+link repositório git: https://github.com/luanmurilo/atelie_solidario_react.git
+
 Optamos por desenvolver o aplicativo em React Native com o uso do Expo, principalmente pela facilidade e agilidade que essa ferramenta proporciona, além do conhecimento prévio da maioria dos integrantes da equipe. Para a construção do app, utilizamos como referência o projeto de extensão Ateliê Solidário, orientado pela professora Luciane Ropelatto, infelizmente não conseguimos contato com ele até o memento
 
 Escopo do Projeto (o que será entregue)
